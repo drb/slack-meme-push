@@ -21,37 +21,37 @@ $len    = count($parts);
 $images = Config::BACKGROUND_IMAGES;
 
 // split the sentence up into top and bottom portions
-$firsthalf  = implode(" ", array_slice($parts, 0, $len / 2));
-$secondhalf = implode(" ", array_slice($parts, $len / 2));
+$firstHalf  = implode(" ", array_slice($parts, 0, $len / 2));
+$secondHalf = implode(" ", array_slice($parts, $len / 2));
 
 // choose a random image from the seeded cache
-$example_image_path = $images[array_rand($images)] ;
+$exampleImagePath = $images[array_rand($images)] ;
 
 // hash the text with the selected image filename for uniqueness
-$filenameHash = md5($firsthalf . $secondhalf . $example_image_path) . '.jpg';
+$filenameHash = md5($firstHalf . $secondHalf . $exampleImagePath) . '.jpg';
 
 // generate the image
 $mg = new Meme_generator();
-$mg->set_top_text(strtoupper($firsthalf));
-$mg->set_bottom_text(strtoupper($secondhalf));
+$mg->set_top_text(strtoupper($firstHalf));
+$mg->set_bottom_text(strtoupper($secondHalf));
 $mg->set_output_dir('./tmp/');
-$mg->set_image($example_image_path);
+$mg->set_image($exampleImagePath);
 $mg->set_font('./fonts/Impact.ttf');
 $mg->set_font_ratio( 0.07 );
 $mg->set_margins_ratio( 0.03 );
-$output_image = $mg->generate();
+$outputImage = $mg->generate();
             
 // instantiate the class to push to s3
 $s3 = new S3(Config::AWS_ACCESS_KEY, Config::AWS_ACCESS_SECRET);
 
 // now push the file to s3
-if($s3->putObjectFile('./tmp/' . $output_image, $bucket, $filenameHash, S3::ACL_PUBLIC_READ) )
+if($s3->putObjectFile('./tmp/' . $outputImage, $bucket, $filenameHash, S3::ACL_PUBLIC_READ) )
 {
 
     // generate the path to the asset on s3 we just sent
     $s3File = 'https://s3-eu-west-1.amazonaws.com/' . $bucket . '/' . $filenameHash;
 
-    // generate a curl instance to mke the request
+    // generate a curl instance to make the request
     $ch = curl_init('https://' . Config::SLACK_DOMAIN . '.slack.com/services/hooks/slackbot?token=' . Config::SLACK_KEY . '&channel=' . Config::SLACK_CHANNEL);                                                                      
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
     curl_setopt($ch, CURLOPT_POSTFIELDS, Config::SLACK_PREFIX . $s3File);                                                                  
