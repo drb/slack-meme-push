@@ -16,6 +16,8 @@ class Config {
 	const AWS_ACCESS_SECRET = 'AWS_SECRET';
 
 
+	// prefix the slackbot post with this
+	const SLACK_PREFIX = 'It\'s 9.05 guys. ';
 	// slack API key
 	const SLACK_KEY = 'SLACK_API_KEY';
 	// slak channel (requires the hash at the front)
