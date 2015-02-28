@@ -2,6 +2,10 @@
 
 /**
  * Quick and dirty script to push meme-type images to the Slack service using the @slackbot account
+ *
+ * Requires PHP 5.x compiled with:
+ * cURL (http://php.net/manual/en/book.curl.php)
+ * ImageMagick (http://php.net/manual/en/imagick.setup.php)
  */
 
 // load some util classes we use
