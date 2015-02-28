@@ -25,17 +25,17 @@ $firstHalf  = implode(" ", array_slice($parts, 0, $len / 2));
 $secondHalf = implode(" ", array_slice($parts, $len / 2));
 
 // choose a random image from the seeded cache
-$exampleImagePath = $images[array_rand($images)] ;
+$backgroundImagePath = $images[array_rand($images)] ;
 
 // hash the text with the selected image filename for uniqueness
-$filenameHash = md5($firstHalf . $secondHalf . $exampleImagePath) . '.jpg';
+$filenameHash = md5($firstHalf . $secondHalf . $backgroundImagePath) . '.jpg';
 
 // generate the image
 $mg = new Meme_generator();
 $mg->set_top_text(strtoupper($firstHalf));
 $mg->set_bottom_text(strtoupper($secondHalf));
 $mg->set_output_dir('./tmp/');
-$mg->set_image($exampleImagePath);
+$mg->set_image($backgroundImagePath);
 $mg->set_font('./fonts/Impact.ttf');
 $mg->set_font_ratio( 0.07 );
 $mg->set_margins_ratio( 0.03 );
