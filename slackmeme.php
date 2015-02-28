@@ -63,7 +63,7 @@ if($s3->putObjectFile('./tmp/' . $outputImage, $bucket, $filenameHash, S3::ACL_P
 
 /**
  * randomLine
- * Get a random quote from the store
+ * Get a random quote from the textfile
 **/
 function randomLine ($fileName, $maxLineLength = 4096) {
 

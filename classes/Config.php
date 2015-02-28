@@ -17,7 +17,7 @@ class Config {
 
 
 	// prefix the @slackbot post with this
-	const SLACK_PREFIX = 'It\'s 9.05 guys. ';
+	const SLACK_PREFIX = 'This text is sent before the image path. Leave empty if none is required.';
 	// Slack API key
 	const SLACK_KEY = 'SLACK_API_KEY';
 	// Slack channel (requires the hash at the front urlencoded as %23 i.e. %23dev for #dev)
