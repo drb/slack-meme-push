@@ -41,8 +41,8 @@ $mg->set_bottom_text(strtoupper($secondHalf));
 $mg->set_output_dir('./tmp/');
 $mg->set_image($backgroundImagePath);
 $mg->set_font('./fonts/Impact.ttf');
-$mg->set_font_ratio( 0.07 );
-$mg->set_margins_ratio( 0.03 );
+$mg->set_font_ratio(0.07);
+$mg->set_margins_ratio(0.03);
 $outputImage = $mg->generate();
             
 // instantiate the class to push to s3
