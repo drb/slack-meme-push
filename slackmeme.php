@@ -13,6 +13,14 @@ require_once('classes/Meme_generator.php');
 require_once('classes/S3.php');
 require_once('classes/Config.php');
 
+// set timezone for shared hosting...
+date_default_timezone_set('Europe/London');
+
+// ...for this wonderfully hacky fix - shared server is on EST so we only want to fire this code when it's 9 GMT. 
+if(date('G') != '9') {
+    exit(0);
+}
+
 // the s3 bucket name
 $bucket = Config::AWS_BUCKET;
 
